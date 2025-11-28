@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 8081;
-const proprietarioController = require('./controllers/ProprietarioControlls');
+const proprietarioController = require('./controllers/ProprietarioControlls.js');
 
 //tratar o json
 app.use(bodyParser.json());
@@ -13,12 +13,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //rota teste
-app.get('/', (req, res) => 
-    res.send('Estou aqui')
-);
+app.get('/', (req, res) => res.send('Estou aqui'));
 
 //rota do controller
-app.unsubscribe('/proprietario', proprietarioController);
+app.use('/proprietario', proprietarioController);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
